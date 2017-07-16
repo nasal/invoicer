@@ -133,11 +133,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script>
       $(function() {
-        // stuff
+        //
+        // start editing here
+        //
         const config = {
           dot: '.',
           me: 'My Name<br>My Address<br>My City<br>Other stuff',
           notes: 'Optional footnotes.',
+          currency: '$',
           currencyBefore: true
         }
         const customers = {
@@ -160,8 +163,10 @@
           221
         ]
         const discount = 11.21
-        const currency = '$'
         const customer = 'customer'
+        //
+        // stop editing here
+        //
 
         // magic
         const date = moment()
@@ -181,15 +186,15 @@
           $('#products').append(product + '<br>')
           $('#qtys').append(qtys[i] + '<br>')
           config.currencyBefore
-            ? $('#prices').append(currency + ' ' + values[i] + '<br>')
-            : $('#prices').append(values[i] + ' ' + currency + '<br>')
+            ? $('#prices').append(config.currency + ' ' + values[i] + '<br>')
+            : $('#prices').append(values[i] + ' ' + config.currency + '<br>')
         })
         config.currencyBefore
-          ? $('#discount').html(currency + ' ' + Intl.NumberFormat('en-US', { minimumFractionDigits: 2 }).format(discount))
-          : $('#discount').html(Intl.NumberFormat('en-US', { minimumFractionDigits: 2 }).format(discount) + ' ' + currency)
+          ? $('#discount').html(config.currency + ' ' + Intl.NumberFormat('en-US', { minimumFractionDigits: 2 }).format(discount))
+          : $('#discount').html(Intl.NumberFormat('en-US', { minimumFractionDigits: 2 }).format(discount) + ' ' + config.currency)
         config.currencyBefore
-          ? $('#total').html(currency + ' ' + Intl.NumberFormat('en-US', { minimumFractionDigits: 2 }).format(sum-discount))
-          : $('#total').html(Intl.NumberFormat('en-US', { minimumFractionDigits: 2 }).format(sum-discount) + ' ' + currency)
+          ? $('#total').html(config.currency + ' ' + Intl.NumberFormat('en-US', { minimumFractionDigits: 2 }).format(sum-discount))
+          : $('#total').html(Intl.NumberFormat('en-US', { minimumFractionDigits: 2 }).format(sum-discount) + ' ' + config.currency)
         $('#me').html(config.me)
         $('#customer').html(customers[customer])
         $('#notes').html(config.notes)
